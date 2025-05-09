@@ -2,9 +2,7 @@ import React from "react";
 import { BackgroundLines } from "../ui/background-lines";
 import Image from "next/image";
 import Example from "@/../public/examples.jpg";
-type Props = {};
-
-const Hero = (props: Props) => {
+const Hero = () => {
   return (
     <div className="h-screen md:h-auto">
       <BackgroundLines className="bg-transparent flex flex-col md:flex-row items-center justify-between w-full px-6 md:px-12 lg:px-20 py-10 dark ">
@@ -15,7 +13,7 @@ const Hero = (props: Props) => {
           </h2>
           <p className="mt-4 text-lg md:text-xl text-neutral-700 dark:text-neutral-300 leading-relaxed">
             Every tee, every bag—crafted with purpose. <br />
-            <b>Graced Couture</b> is more than fashion; it's a movement to{" "}
+            <b>Graced Couture</b> is more than fashion; it&apos;s a movement to{" "}
             <b>spread positivity and Jesus</b> through every design.
           </p>
           <p className="mt-6 text-sm md:text-base text-neutral-500 dark:text-neutral-400">

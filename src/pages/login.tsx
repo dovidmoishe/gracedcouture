@@ -19,10 +19,11 @@ const SignUpForm = ({ toggleForm }: { toggleForm: () => void }) => {
         description: "Congratulations 🎉",
       });
       router.push("/");
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as { message?: string };
       toast({
         title: "Account Creation Failed",
-        description: error.message,
+        description: err.message ?? "An unknown error occurred.",
       });
     }
   };
@@ -108,10 +109,11 @@ const LoginForm = ({ toggleForm }: { toggleForm: () => void }) => {
         description: "Welcome back!",
       });
       router.push("/");
-    } catch (error: any) {
+    } catch (error) {
+      const err = error as { message?: string };
       toast({
         title: "Login Failed",
-        description: error.message,
+        description: err.message ?? "An unknown error occurred.",
       });
     }
   };
@@ -156,7 +158,7 @@ const LoginForm = ({ toggleForm }: { toggleForm: () => void }) => {
       </form>
 
       <p className="mt-4 text-center text-gray-400">
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <button onClick={toggleForm} className="text-blue-500 hover:underline">
           Sign Up
         </button>

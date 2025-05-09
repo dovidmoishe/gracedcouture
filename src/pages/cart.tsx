@@ -17,19 +17,20 @@ export interface CartItem {
   customName: string
 }
 
-interface userDeliveryDataDTO {
-  phoneNumber: number;
-  streetAddress: string;
-  city: string;
-  state: string;
-  zipCode: string;
+interface superCartItem {
+  products: {
+    $id: string;
+    name: string;
+    price: number;
+    productImage: string;
+  };
+  quantity: number;
+  customName: string
 }
-
 export default function CartPage() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
   const user = useUserState((state) => state.user);
-  const [userDeliveryData, setUserDeliveryData] = useState<userDeliveryDataDTO>();
 
   // Fetch cart data on component mount
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function CartPage() {
 
           cartData.documents.forEach((document) => {
             if (document.cartItems && document.cartItems.length > 0) {
-              document.cartItems.forEach((cartItem: any) => {
+              document.cartItems.forEach((cartItem: superCartItem) => {
                 cartItems.push({
                   id: cartItem.products.$id,
                   name: cartItem.products.name,

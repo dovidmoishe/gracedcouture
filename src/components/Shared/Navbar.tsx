@@ -6,9 +6,7 @@ import { CiShoppingCart } from "react-icons/ci";
 import Link from "next/link";
 import useUserState from "@/core/useStore";
 
-type Props = {};
-
-const Navbar = (props: Props) => {
+const Navbar = () => {
   const user = useUserState((state) => state.user);
   const logout = useUserState((state) => state.logout);
 

@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import {
-  Modal,
   ModalTrigger,
   ModalBody,
   ModalContent,
@@ -14,6 +13,7 @@ import { deleteAllItemsInCart } from "@/core/actions";
 import { useRouter } from "next/router";
 import { CartItem } from "@/pages/cart";
 import axios from "axios";
+import { FlutterWaveResponse } from "flutterwave-react-v3/dist/types";
 
 interface UserDeliveryDataDTO {
   phoneNumber: string;
@@ -60,7 +60,7 @@ const DeliveryForm = ({ user, total, productDetails }: PaymentDetails) => {
   const fwConfig = {
     ...config,
     text: "Pay with Flutterwave!",
-    callback: async (response: any) => {
+    callback: async (response: FlutterWaveResponse) => {
       try {
         console.log("Flutterwave Response:", response);
         

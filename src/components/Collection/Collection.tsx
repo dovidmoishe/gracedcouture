@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ProductCard } from "./ProductCard";
-import Example from "@/../public/examples.jpg";
 import { getProducts } from "@/core/actions";
 import { productDetails } from "@/core/interfaces";
 import useUserState from "@/core/useStore";
-type Props = {};
 
-const Collection = (props: Props) => {
+const Collection = () => {
   const [products, setProducts] = useState<productDetails[]>();
   const user = useUserState((state) => state.user);
 

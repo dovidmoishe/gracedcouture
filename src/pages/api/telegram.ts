@@ -15,7 +15,15 @@ export default async function handler(
   try {
     const { amount, customer, productDetails } = req.body; // Data from payment gateway
     const TELEGRAM_API = `https://api.telegram.org/bot${botToken}/sendMessage`;
-    const refinedProducts = productDetails.map((product: any) => ({
+
+    type Product = {
+      name: string;
+      quantity: number;
+      price: number;
+      customName?: string;
+    };
+
+    const refinedProducts = (productDetails as Product[]).map((product) => ({
       Name: product.name,
       Quantity: product.quantity,
       Price: `NGN ${product.price}`,
@@ -28,7 +36,7 @@ export default async function handler(
     ✅ New Order Received! 
     
     🛍️ Product Details:
-    ${refinedProducts.map((product: any) => 
+    ${refinedProducts.map((product) => 
       `• ${product.Name}
         Quantity: ${product.Quantity}
         Price: ${product.Price}

@@ -1,7 +1,5 @@
 import { account, appwriteConstants, databases } from "@/lib/appwrite";
-import { ID, OAuthProvider } from "appwrite";
-
-import { create } from "zustand";
+import { ID } from "appwrite";
 
 interface signUpDetails {
   email: string;
@@ -21,7 +19,7 @@ interface signUpDetails {
 const createAccount = async ({ email, password, name }: signUpDetails) => {
   try {
     const response = await account.create(ID.unique(), email, password, name);
-    const newUser = await databases.createDocument(
+     await databases.createDocument(
       appwriteConstants.db,
       appwriteConstants.user_collection,
       ID.unique(),

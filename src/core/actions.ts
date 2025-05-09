@@ -1,4 +1,4 @@
-import { databases, appwriteConstants, storage } from "@/lib/appwrite";
+import { databases, appwriteConstants } from "@/lib/appwrite";
 import { ID, Query } from "appwrite";
 
 const {
@@ -11,9 +11,7 @@ const {
 
 export const getProducts = async () => {
   const products = await databases.listDocuments(db, product_collection);
-  const getImageLink = async (imageId: string) => {
-    return await storage.getFile(image_bucket, imageId);
-  };
+ 
   const parsedProducts = products.documents.map((product) => {
     return {
       id: product.$id,

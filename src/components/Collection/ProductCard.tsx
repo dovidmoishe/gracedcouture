@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import { cn } from "@/lib/utils";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import {
   Card,
   CardTitle,
@@ -13,7 +13,6 @@ import {
 } from "../cards-demo-3";
 import { productDetails } from "@/core/interfaces";
 import { addToCart } from "@/core/actions";
-import { toast } from "@/hooks/use-toast";
 import Link from "next/link";
 import {useRouter} from "next/router";
 
@@ -33,16 +32,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 }) => {
   const router = useRouter()
   const onAddToCart = async () => {
-    try {
-      await addToCart(userId, id)
-      toast({
-        title: "Item added successfully"
-      });
-    } catch (error) {
-      console.log(error)
+    if (customizable) {
+      router.push(`/product/${id}`);
+    } else {
+      await addToCart(userId, id, 1);
     }
-
-  };
+  }
   return (
     <Link href={`/product/${id}`}>
       <Card>
@@ -60,7 +55,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
         whileTap={{ scale: 0.95 }}
         onClick={
           async () => {
-            customizable ? router.push(`/product/${id}`) : await addToCart(userId, id, 1)
+            await onAddToCart();
           }
         }
         className={cn(
